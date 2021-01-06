@@ -24,12 +24,12 @@ export default class Level {
 
         house.onload = function () {
 
-            ctx.drawImage(house, 80, 485, 250, 250)
+            ctx.drawImage(house, 80, 550, 250, 250)
         }
     }
     animate(ctx) {
         // this.drawBackground(ctx);
-        this.drawGround(ctx);
+        // this.drawGround(ctx);
         this.drawHouse(ctx);
     }
 }

@@ -45,6 +45,8 @@ export default class GhostBlasters {
     animate() {
         // debugger
         // this.drawBackground(this.ctx);
+        // this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height);
+        console.log(this);
         this.level.animate(this.ctx);
         this.shooter.animate(this.ctx);
         if (this.running) {

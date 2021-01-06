@@ -4,8 +4,8 @@ export default class Shooter {
     constructor(dimensions) {
         this.dimensions = dimensions;
         this.velocity = 5;
-        this.x = 50;
-        this.y = 600;
+        this.x = 300;
+        this.y = 685;
     }
 
     drawShooter(ctx) {
