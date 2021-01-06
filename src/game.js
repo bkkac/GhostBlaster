@@ -14,13 +14,14 @@ export default class GhostBlasters {
     
     registerEvents() {
         this.boundClickHandler = this.click.bind(this);
-        this.ctx.canvas.addEventListener("keydown", this.boundClickHandler);
+        document.addEventListener("keydown", this.boundClickHandler);
     }
 
     restart() {
         this.running = false;
         this.level = new Level(this.dimensions);
         this.shooter = new Shooter (this.dimensions);
+        // this.level.startMenu();
         // this.ctx.font = "30px Arial";
         // this.ctx.fillStyle = "red";
         // this.ctx.fillText("Press any key to start", this.dimensions.width / 2, this.dimensions.height / 2)      
@@ -37,7 +38,7 @@ export default class GhostBlasters {
         if (!this.running) {
             this.play();
         }
-
+        // debugger
         // if (e.keyCode === 32) {
 
             this.level.moveHouse();

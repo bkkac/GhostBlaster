@@ -22,6 +22,12 @@ export default class Level {
         }
    }
 
+//    startMenu() {
+//         this.ctx.font = "30px Arial";
+//        this.ctx.fillStyle = "#b30000";
+//         this.ctx.fillText("Press any key to start", 200, 200)      
+//    }
+
 
     drawHouse(ctx) {
         var house = new Image();
