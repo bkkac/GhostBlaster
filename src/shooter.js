@@ -12,10 +12,10 @@ export default class Shooter {
         var shooter = new Image();
         shooter.src = '../images/squirtle.png';
         let that = this;
-        ctx.drawImage(shooter, 300, 660, 115, 115)
+        ctx.drawImage(shooter, 300, 673, 115, 115)
         shooter.onload = function () {
             // console.log(this)
-            ctx.drawImage(shooter, 300, 660, 115, 115)
+            ctx.drawImage(shooter, 300, 673, 115, 115)
         }
     }
 
@@ -23,10 +23,10 @@ export default class Shooter {
         var skateboard = new Image();
         skateboard.src = '../images/2d_skateboard.png';
         let that = this;
-        ctx.drawImage(skateboard, 280, 720, 115, 115)
+        ctx.drawImage(skateboard, 280, 770, 130, 30)
         skateboard.onload = function () {
             // console.log(this)
-            ctx.drawImage(skateboard, 280, 720, 115, 115)
+            ctx.drawImage(skateboard, 280, 770, 130, 30)
         } 
     }
 
