@@ -4,28 +4,37 @@ export default class Shooter {
     constructor(dimensions) {
         this.dimensions = dimensions;
         this.velocity = 5;
-        this.x = 300;
-        this.y = 685;
+        // this.x = 300;
+        // this.y = 685;
     }
 
     drawShooter(ctx) {
         var shooter = new Image();
         shooter.src = '../images/squirtle.png';
         let that = this;
-        ctx.drawImage(shooter, that.x, that.y, 115, 115)
+        ctx.drawImage(shooter, 300, 660, 115, 115)
         shooter.onload = function () {
             // console.log(this)
-            ctx.drawImage(shooter, that.x, that.y, 115, 115)
+            ctx.drawImage(shooter, 300, 660, 115, 115)
         }
     }
 
-    moveShooter() {
-        this.x += this.velocity;
+    drawSkateboard(ctx) {
+        var skateboard = new Image();
+        skateboard.src = '../images/2d_skateboard.png';
+        let that = this;
+        ctx.drawImage(skateboard, 280, 720, 115, 115)
+        skateboard.onload = function () {
+            // console.log(this)
+            ctx.drawImage(skateboard, 280, 720, 115, 115)
+        } 
     }
 
     animate(ctx) {
-        this.moveShooter();
+        // this.moveShooter();
+        this.drawSkateboard(ctx)
         this.drawShooter(ctx);
+
 
     }
 }

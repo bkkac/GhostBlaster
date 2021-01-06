@@ -14,7 +14,7 @@ export default class GhostBlasters {
     
     registerEvents() {
         this.boundClickHandler = this.click.bind(this);
-        this.ctx.canvas.addEventListener("mousedown", this.boundClickHandler);
+        this.ctx.canvas.addEventListener("keydown", this.boundClickHandler);
     }
 
     restart() {
@@ -30,12 +30,20 @@ export default class GhostBlasters {
        this.animate(); 
     }
 
+    // startGame(e) {
+    //    if () 
+    // }
+
     click(e) {
         if (!this.running) {
             this.play();
         }
-        this.shooter.moveShooter();
-        this.animate();
+
+        if (e.keyCode === 32) {
+
+            this.level.moveLevel();
+        }
+        // this.animate();
         
     }
     // drawBackground(ctx) {

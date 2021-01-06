@@ -1,30 +1,26 @@
 export default class Level {
    constructor(dimensions) {
        this.dimensions = dimensions;
+       this.x = 80;
+       this.y = 550;
+       this.velocity = 5;
    } 
 
-    // drawBackground(ctx) {
-    //     ctx.fillStyle = "black";
-    //     ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
-    // }
 
-    drawGround(ctx) {
-        var ground = new Image();
-        ground.src = '../images/haunted_ground.png';
 
-        ground.onload = function () {
-
-            ctx.drawImage(ground, 0, 400, 1100, 400)
-        } 
+    moveLevel() {
+        this.x -= this.velocity;
     }
+
 
     drawHouse(ctx) {
         var house = new Image();
         house.src = '../images/haunted_house.png';
-        ctx.drawImage(house, 80, 550, 250, 250)
+        let that = this;
+        ctx.drawImage(house, that.x, that.y, 250, 250)
         house.onload = function () {
 
-            ctx.drawImage(house, 80, 550, 250, 250)
+            ctx.drawImage(house, that.x, that.y, 250, 250)
         }
     }
     animate(ctx) {
