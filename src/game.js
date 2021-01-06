@@ -1,13 +1,11 @@
 import Level from "./level";
-// import Ghost from "./ghost";
 import Shooter from "./shooter"
-// import '../stylesheets'
 
 export default class GhostBlasters {
     constructor(canvas) {
         this.ctx = canvas.getContext("2d");
         this.dimensions = { width: canvas.width, height: canvas.height };
-        // this.running = false;
+        this.ghost_gen = 1;
         this.registerEvents();
         this.restart();
     }
@@ -32,7 +30,6 @@ export default class GhostBlasters {
        this.running = true;
        this.animate(); 
     }
-
 
     click(e) {
         if (!this.running) {
@@ -67,14 +64,25 @@ export default class GhostBlasters {
         this.ctx.fillStyle = "#b30000";
         this.ctx.fillText("How to play:", 395, 200); 
     }
+
+    drawSparkles(ctx) {
+        var sparkles = new Image();
+        sparkles.src = '../images/stars.png';
+        ctx.drawImage(sparkles, 200, 700, 100, 100)
+        sparkles.onload = function () {
+
+            ctx.drawImage(sparkles, 200, 700, 100, 100)
+        }
+    }
  
     animate() {
         this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height);
         this.level.animate(this.ctx);
         this.shooter.animate(this.ctx);
-        
+         
         if (this.running) {
             requestAnimationFrame(this.animate.bind(this));
+            this.drawSparkles(this.ctx);
         }
     }
 }

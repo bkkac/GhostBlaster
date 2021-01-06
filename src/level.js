@@ -1,3 +1,10 @@
+const CONSTANTS = {
+    GHOST_WIDTH: 150,
+    EDGE_BUFFER: 50,
+    WARM_UP_SECONDS: 1
+};
+
+
 export default class Level {
    constructor(dimensions) {
        this.dimensions = dimensions;
@@ -5,6 +12,9 @@ export default class Level {
        this.house_y = 550;
        this.ghost_x = 635; 
        this.velocity = 5;
+       this.ghosts = [
+
+       ]
    } 
 
 
@@ -16,6 +26,19 @@ export default class Level {
             this.drawHouse(ctx);
         }
    }
+
+   randomGhost(x) {
+
+    const ghost = {
+            left: x,
+            right: CONSTANTS.PIPE_WIDTH + x,
+            top: 0, 
+            bottom: this.dimensions.height,
+            shot: false,
+        }
+        return ghost;
+    }
+//    }
 
     newGhost(ctx) {
 
@@ -56,6 +79,6 @@ export default class Level {
     animate(ctx) {
 
         this.drawHouse(ctx);
-        this.moveHouse(ctx)
+        this.moveHouse(ctx);
     }
 }
