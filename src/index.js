@@ -3,4 +3,4 @@ import GhostBlasters from './game';
 
 const canvas = document.getElementById('game-canvas');
 new GhostBlasters(canvas);
-console.log("webpack is working")
+// console.log("webpack is working")

@@ -3,38 +3,42 @@ import { ContextExclusionPlugin } from "webpack";
 export default class Ghost {
 
     constructor(dimensions) {
-        this.velocity = 0;
+        this.velocity = 5;
         this.dimensions = dimensions;
         this.x = dimensions.width / 3;
         this.y = this.dimensions.height / 2;
+        this.ghost_x = 635;
     }
 
     newGhost(ctx) {
-        // document.getElementById("unshot-ghost");
+
         var unshotGhost = new Image();
         unshotGhost.src = '../images/unshot_ghost.png';
-        // unshotGhost.alt = 'alt';
-        // document.body.appendChild(unshotGhost);
+
         unshotGhost.onload = function() {
 
-            ctx.drawImage(unshotGhost, 50, 35, 63, 70)
+            ctx.drawImage(unshotGhost, 50, this.ghost_x, 63, 70)
         }
     }
 
     shotGhost(ctx) {
-        // document.getElementById("unshot-ghost");
+
         var shotGhost = new Image();
         shotGhost.src = '../images/shot_ghost.png';
-        // unshotGhost.alt = 'alt';
-        // document.body.appendChild(unshotGhost);
+
         shotGhost.onload = function () {
 
-            ctx.drawImage(shotGhost, 50, 35, 63, 70)
+            ctx.drawImage(shotGhost, 50, 35, this.ghost_x, 70)
         }
+    }
+
+    moveGhost(ctx) {
+        this.ghost_x -= this.velocity;
     }
 
     animate(ctx) {
         this.newGhost(ctx);
+        this.moveGhost(ctx);
         // this.shotGhost(ctx);
     }
 }

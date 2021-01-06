@@ -31,7 +31,6 @@ export default class Shooter {
     }
 
     animate(ctx) {
-        // this.moveShooter();
         this.drawSkateboard(ctx)
         this.drawShooter(ctx);
 

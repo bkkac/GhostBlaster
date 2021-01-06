@@ -17,5 +17,8 @@ body {
 }
 
 h1 {
-    color: white;
+    color:#b30000;
+    font-family: 'Creepster', cursive;
+    font-weight: 200;
+    font-size: 50px;
 }

@@ -1,3 +1,5 @@
+// import Ghost from './ghost';
+
 export default class Level {
    constructor(dimensions) {
        this.dimensions = dimensions;
@@ -7,12 +9,18 @@ export default class Level {
    } 
 
 
-   moveHouse() {
+   moveHouse(ctx) {
         this.house_x -= this.velocity;
+        let that = this;
+        // let ghost = new Ghost(this.dimensions);
+        if (this.house_x < -200) {
+            this.house_x = 950;
+            this.drawHouse(ctx);
+            // let newGhost = ghost.newGhost(ctx)
+            // ghost.moveGhost(newGhost)
+
+        }
    }
-    // moveLevel() {
-    //     this.x -= this.velocity;
-    // }
 
 
     drawHouse(ctx) {
@@ -26,8 +34,7 @@ export default class Level {
         }
     }
     animate(ctx) {
-        // this.drawBackground(ctx);
-        // this.drawGround(ctx);
+
         this.drawHouse(ctx);
         this.moveHouse(ctx)
     }
