@@ -41,4 +41,6 @@ export default class Ghost {
         this.moveGhost(ctx);
         // this.shotGhost(ctx);
     }
+
+
 }

@@ -1,10 +1,9 @@
-// import Ghost from './ghost';
-
 export default class Level {
    constructor(dimensions) {
        this.dimensions = dimensions;
        this.house_x = 80;
        this.house_y = 550;
+       this.ghost_x = 635; 
        this.velocity = 5;
    } 
 
@@ -12,22 +11,37 @@ export default class Level {
    moveHouse(ctx) {
         this.house_x -= this.velocity;
         let that = this;
-        // let ghost = new Ghost(this.dimensions);
         if (this.house_x < -200) {
             this.house_x = 950;
             this.drawHouse(ctx);
-            // let newGhost = ghost.newGhost(ctx)
-            // ghost.moveGhost(newGhost)
-
         }
    }
 
-//    startMenu() {
-//         this.ctx.font = "30px Arial";
-//        this.ctx.fillStyle = "#b30000";
-//         this.ctx.fillText("Press any key to start", 200, 200)      
-//    }
+    newGhost(ctx) {
 
+        var unshotGhost = new Image();
+        unshotGhost.src = '../images/unshot_ghost.png';
+
+        unshotGhost.onload = function () {
+
+            ctx.drawImage(unshotGhost, 50, this.ghost_x, 63, 70)
+        }
+    }
+
+    shotGhost(ctx) {
+
+        var shotGhost = new Image();
+        shotGhost.src = '../images/shot_ghost.png';
+
+        shotGhost.onload = function () {
+
+            ctx.drawImage(shotGhost, 50, 35, this.ghost_x, 70)
+        }
+    }
+
+    moveGhost(ctx) {
+        this.ghost_x -= this.velocity;
+    }
 
     drawHouse(ctx) {
         var house = new Image();

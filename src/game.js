@@ -1,5 +1,5 @@
 import Level from "./level";
-import Ghost from "./ghost";
+// import Ghost from "./ghost";
 import Shooter from "./shooter"
 // import '../stylesheets'
 
@@ -21,11 +21,11 @@ export default class GhostBlasters {
         this.running = false;
         this.level = new Level(this.dimensions);
         this.shooter = new Shooter (this.dimensions);
-        // this.level.startMenu();
-        // this.ctx.font = "30px Arial";
-        // this.ctx.fillStyle = "red";
-        // this.ctx.fillText("Press any key to start", this.dimensions.width / 2, this.dimensions.height / 2)      
         this.animate(); 
+        this.howToPlay();
+        this.instructions();
+        this.highScore();
+        this.startGame();
     }
 
     play() {
@@ -38,19 +38,41 @@ export default class GhostBlasters {
         if (!this.running) {
             this.play();
         }
-        // debugger
-        // if (e.keyCode === 32) {
 
             this.level.moveHouse();
-        // }
         
         
+    }
+
+    startGame() {
+        this.ctx.font = "20pt Creepster";
+        this.ctx.fillStyle = "#b30000";
+        this.ctx.fillText("Press any key to start", 365, 350);
+    }
+
+    instructions() {
+        this.ctx.font = "20pt Creepster";
+        this.ctx.fillStyle = "#b30000";
+        this.ctx.fillText("Click on ghosts to shoot them.", 315, 250); 
+    }
+
+    highScore() {
+        this.ctx.font = "20pt Creepster";
+        this.ctx.fillStyle = "#b30000";
+        this.ctx.fillText("Shoot as many ghosts as possible to get a high score!", 225, 300); 
+    }
+
+    howToPlay() {
+        this.ctx.font = "30pt Creepster";
+        this.ctx.fillStyle = "#b30000";
+        this.ctx.fillText("How to play:", 395, 200); 
     }
  
     animate() {
         this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height);
         this.level.animate(this.ctx);
         this.shooter.animate(this.ctx);
+        
         if (this.running) {
             requestAnimationFrame(this.animate.bind(this));
         }
