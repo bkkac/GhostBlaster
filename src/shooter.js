@@ -12,6 +12,7 @@ export default class Shooter {
         var shooter = new Image();
         shooter.src = '../images/squirtle.png';
         let that = this;
+        ctx.drawImage(shooter, that.x, that.y, 115, 115)
         shooter.onload = function () {
             // console.log(this)
             ctx.drawImage(shooter, that.x, that.y, 115, 115)

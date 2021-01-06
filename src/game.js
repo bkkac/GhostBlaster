@@ -19,8 +19,8 @@ export default class GhostBlasters {
 
     restart() {
         this.running = false;
-        this.shooter = new Shooter (this.dimensions);
         this.level = new Level(this.dimensions);
+        this.shooter = new Shooter (this.dimensions);
         // this.ghost = new Ghost(this.dimensions);
         this.animate(); 
     }
@@ -35,6 +35,7 @@ export default class GhostBlasters {
             this.play();
         }
         this.shooter.moveShooter();
+        this.animate();
         
     }
     // drawBackground(ctx) {
@@ -45,7 +46,7 @@ export default class GhostBlasters {
     animate() {
         // debugger
         // this.drawBackground(this.ctx);
-        // this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height);
+        this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height);
         console.log(this);
         this.level.animate(this.ctx);
         this.shooter.animate(this.ctx);

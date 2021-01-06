@@ -3,10 +3,10 @@ export default class Level {
        this.dimensions = dimensions;
    } 
 
-    drawBackground(ctx) {
-        ctx.fillStyle = "black";
-        ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
-    }
+    // drawBackground(ctx) {
+    //     ctx.fillStyle = "black";
+    //     ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
+    // }
 
     drawGround(ctx) {
         var ground = new Image();
@@ -21,7 +21,7 @@ export default class Level {
     drawHouse(ctx) {
         var house = new Image();
         house.src = '../images/haunted_house.png';
-
+        ctx.drawImage(house, 80, 550, 250, 250)
         house.onload = function () {
 
             ctx.drawImage(house, 80, 550, 250, 250)
