@@ -45,7 +45,7 @@ export default class GhostBlasters {
 
     drawSparkles(ctx) {
         var sparkles = new Image();
-        sparkles.src = '../images/stars.png';
+        sparkles.src = './images/stars.png';
         ctx.drawImage(sparkles, 180, 725  , 100, 100)
         sparkles.onload = function () {
 

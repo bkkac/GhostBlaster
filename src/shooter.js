@@ -10,7 +10,7 @@ export default class Shooter {
 
     drawShooter(ctx) {
         var shooter = new Image();
-        shooter.src = '../images/squirtle.png';
+        shooter.src = './images/squirtle.png';
         let that = this;
         ctx.drawImage(shooter, 300, 673, 115, 115)
         shooter.onload = function () {
@@ -21,7 +21,7 @@ export default class Shooter {
 
     drawSkateboard(ctx) {
         var skateboard = new Image();
-        skateboard.src = '../images/2d_skateboard.png';
+        skateboard.src = './images/2d_skateboard.png';
         let that = this;
         ctx.drawImage(skateboard, 280, 770, 130, 30)
         skateboard.onload = function () {

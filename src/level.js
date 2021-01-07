@@ -51,7 +51,7 @@ export default class Level {
     drawGhosts(ctx) {
         this.eachGhost(function(ghost) {
             let unshotGhost = new Image();
-            unshotGhost.src = '../images/unshot_ghost.png';
+            unshotGhost.src = './images/unshot_ghost.png';
             ctx.drawImage(unshotGhost, ghost.top, ghost.bottom, CONSTANTS.GHOST_WIDTH, CONSTANTS.GHOST_HEIGHT)
             console.log(unshotGhost.src);
             unshotGhost.onload = function () {
@@ -66,7 +66,7 @@ export default class Level {
     shotGhost(ctx) {
 
         var shotGhost = new Image();
-        shotGhost.src = '../images/shot_ghost.png';
+        shotGhost.src = './images/shot_ghost.png';
 
         shotGhost.onload = function () {
 
@@ -93,7 +93,7 @@ export default class Level {
 
     drawHouse(ctx) {
         var house = new Image();
-        house.src = '../images/haunted_house.png';
+        house.src = './images/haunted_house.png';
         let that = this;
         ctx.drawImage(house, that.house_x, that.house_y, 250, 250)
         house.onload = function () {
