@@ -14,17 +14,17 @@ export default class GhostBlasters {
     registerEvents() {
         this.boundClickHandler = this.click.bind(this);
         document.addEventListener("keydown", this.boundClickHandler);
+        this.boundShootHandler = this.shoot.bind(this);
+        document.addEventListener("mousedown", this.boundShootHandler);
     }
 
     restart() {
         this.running = false;
         this.level = new Level(this.dimensions);
         this.shooter = new Shooter (this.dimensions);
+        this.bullet = new Bullet(this.dimensions);
+
         this.animate(); 
-        this.howToPlay();
-        this.instructions();
-        this.highScore();
-        this.startGame();
     }
 
     play() {
@@ -44,6 +44,18 @@ export default class GhostBlasters {
         
     }
 
+    shoot(e) {
+        if (!this.running) {
+            this.play();
+        }
+        
+        console.log("game", this.bullet);
+        this.bullet.animate(this.ctx);
+        const x = e.clientX;
+        const y = e.clientY;
+        this.bullet.moveBullet(x, y); 
+    }
+
 
     drawSparkles(ctx) {
         var sparkles = new Image();
@@ -59,7 +71,14 @@ export default class GhostBlasters {
         this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height);
         this.level.animate(this.ctx);
         this.shooter.animate(this.ctx);
-         
+        this.bullet.animate(this.ctx)
+        
+        if (!this.running) {
+            this.howToPlay();
+            this.instructions();
+            this.highScore();
+            this.startGame();
+        }
         if (this.running) {
             requestAnimationFrame(this.animate.bind(this));
             this.drawSparkles(this.ctx);
