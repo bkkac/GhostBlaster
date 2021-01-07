@@ -15,7 +15,7 @@ export default class Level {
        this.velocity = 5;
     //    this.ghost_count = 0;
        this.ghosts = [
-           this.randomGhost()
+        //    this.randomGhost()
        ]
    } 
 
@@ -69,15 +69,16 @@ export default class Level {
     shotGhost(ctx) {
 
         var shotGhost = new Image();
-        shotGhost.src = './images/shot_ghost.png';
-
+        shotGhost.src = './images/deadghost.png';
+        ctx.drawImage(shotGhost, 50, 35, 120, 120)
         shotGhost.onload = function () {
 
-            ctx.drawImage(shotGhost, 50, 35, this.ghost_x, 70)
+            ctx.drawImage(shotGhost, 50, 35, 120, 120)
         }
     }
 
     moveGhosts() {
+        // this.generateGhosts();
         this.eachGhost(function(ghost) {
            ghost.left -= 2 ;
            ghost.right -= 2 ; 
@@ -105,6 +106,7 @@ export default class Level {
         this.moveHouse(ctx);
         this.moveGhosts();
         this.drawGhosts(ctx);
+        // this.shotGhost(ctx);
         // this.ghosts.push(this.drawGhosts(ctx));
         // console.log(this.ghosts)
     }

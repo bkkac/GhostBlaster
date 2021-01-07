@@ -1,58 +1,73 @@
 export default class Bullet {
-    constructor(dimensions) {
+    constructor() {
 
         this.radius = 2;
-        this.speed = 15; 
-        this.left = 300;
-        this.top = 700;
-        this.right = 302;
-        this.bottom = 702;
+        this.speed = [0, 0]; 
+        this.position = [350, 650]
 
     }
 
+    newBullet() {
+        const bullet = {
+            left: 300,
+            top: 700,
+            right: 302,
+            bottom: 702
+        }
+
+        return bullet;
+    }
 
     moveBullet(x, y) {
+        // console.log(x);
+        // this.eachBullet(function (bullet) {
+            // if (x < this.position[0]) {
+            //    bullet.position[0] -= this.speed; 
+            //     bullet.right -= this.speed; 
+            //    bullet.position[1] -=  this.speed;
+            //    bullet.bottom -=  this.speed;
+            // } else {
+            //     bullet.position[0] += (this.speed);
+            //     bullet.right += (this.speed);
+            //     bullet.position[1] -=  this.speed;
+            //     bullet.bottom -=  this.speed;
+            // }
+            if (x) {
 
-
-            const a = x - this.right;
-            const b = y - this.top;
-            const c = (a * a) + (b * b); 
-            if (x < this.left) {
-               this.left -= (this.speed); 
-               this.right -= (this.speed); 
-               this.top -=  this.speed;
-               this.bottom -=  this.speed;
+                this.speed[0] = (x - this.position[0]) / 30;
+                this.speed[1] = (y - this.position[1]) / 30;
             } else {
-                this.left += (this.speed);
-                this.right += (this.speed);
-                this.top -=  this.speed;
-                this.bottom -=  this.speed;
+                this.position[0] += this.speed[0];
+                this.position[1] += this.speed[1]
             }
-            console.log("move", this);
+
+        // })
+
     }
 
     drawBullet(ctx) {
-        console.log(ctx, this)
-        // ctx.fillRect(
-        //     this.left,
-        //     this.top,
-        //     this.right,
-        //     this.bottom,
-        // );
-
-        let bullet = new Image();
-        bullet.src = "./images/bullet.png";
-        ctx.drawImage(bullet, this.left, this.top, 100, 100)
-        bullet.onload = function () {
-            ctx.drawImage(bullet, this.left, this.top, 100, 100) 
-        }
+        // this.eachBullet(function(bullet) {
+            // console.log(this);
+            
+            let newbullet = new Image();
+            newbullet.src = "./images/bullet.png";
+            ctx.drawImage(newbullet, this.position[0], this.position[1], 100, 100)
+            let that = this;
+            newbullet.onload = function () {
+                ctx.drawImage(newbullet, that.position[0], that.position[1], 100, 100) 
+            }
+        // })
+        // console.log(ctx, this)
     }
 
-
+    // eachBullet(callback) {
+    //     this.bullets.forEach(callback.bind(this));
+    // }
 
     animate(ctx) {
-        // this.moveBullet();
+        
         this.drawBullet(ctx);
+        this.moveBullet();
     }
 
 }

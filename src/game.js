@@ -5,8 +5,10 @@ import Bullet from "./bullet";
 export default class GhostBlasters {
     constructor(canvas) {
         this.ctx = canvas.getContext("2d");
+        this.canvas = canvas;
         this.dimensions = { width: canvas.width, height: canvas.height };
         this.ghost_gen = 1;
+        this.bullets = [];
         this.creepster = new FontFace(
             "Creepster",
             "url(images/Creepster-Regular.ttf)"
@@ -19,7 +21,7 @@ export default class GhostBlasters {
         this.boundClickHandler = this.click.bind(this);
         document.addEventListener("keydown", this.boundClickHandler);
         this.boundShootHandler = this.shoot.bind(this);
-        document.addEventListener("mousedown", this.boundShootHandler);
+        this.canvas.addEventListener("mousedown", this.boundShootHandler);
     }
 
     restart() {
@@ -42,7 +44,7 @@ export default class GhostBlasters {
         }
 
         this.level.moveHouse();
-        this.level.randomGhost();
+        this.level.ghosts.push(this.level.randomGhost())
         this.level.moveGhosts();
         
         
@@ -53,11 +55,20 @@ export default class GhostBlasters {
             this.play();
         }
         
-        console.log("game", this.bullet);
-        this.bullet.animate(this.ctx);
+        // console.log("game", this.bullet);
+        // const bullet = this.bullet.newBullet;
+        // console.log("before", this.bullet.bullets) 
+        const bullet = new Bullet();
+        this.bullets.push(bullet);
+        // console.log("after", this.bullet.bullets)
+
+        // this.bullet.animate(this.ctx);
+ 
         const x = e.clientX;
         const y = e.clientY;
-        this.bullet.moveBullet(x, y); 
+        console.log(x, y)
+       
+        bullet.moveBullet(x, y); 
     }
 
 
@@ -75,7 +86,7 @@ export default class GhostBlasters {
         this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height);
         this.level.animate(this.ctx);
         this.shooter.animate(this.ctx);
-        this.bullet.animate(this.ctx)
+        
         
         if (!this.running) {
             this.howToPlay();
@@ -84,6 +95,7 @@ export default class GhostBlasters {
             this.startGame();
         }
         if (this.running) {
+            this.bullets.forEach(bullet => bullet.animate(this.ctx));
             requestAnimationFrame(this.animate.bind(this));
             this.drawSparkles(this.ctx);
             
