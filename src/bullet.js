@@ -7,22 +7,9 @@ export default class Bullet {
         this.top = 700;
         this.right = 302;
         this.bottom = 702;
-        // this.bullets = [
-        //     this.newBullet()
-        // ]
-        //  
+
     }
 
-    // newBullet() {
-    //     const bullet = {
-    //         left: 300,
-    //         right: 302,
-    //         top: 700,
-    //         bottom: 702 
-    //     }
-    //     console.log("new", bullet);
-    //     return bullet;
-    // }
 
     moveBullet(x, y) {
 
@@ -46,12 +33,19 @@ export default class Bullet {
 
     drawBullet(ctx) {
         console.log(ctx, this)
-        ctx.fillRect(
-            this.left,
-            this.top,
-            this.right,
-            this.bottom,
-        );
+        // ctx.fillRect(
+        //     this.left,
+        //     this.top,
+        //     this.right,
+        //     this.bottom,
+        // );
+
+        let bullet = new Image();
+        bullet.src = "./images/bullet.png";
+        ctx.drawImage(bullet, this.left, this.top, 100, 100)
+        bullet.onload = function () {
+            ctx.drawImage(bullet, this.left, this.top, 100, 100) 
+        }
     }
 
 
