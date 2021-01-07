@@ -37,6 +37,7 @@ export default class GhostBlasters {
         }
 
         this.level.moveHouse();
+        this.level.randomGhost();
         this.level.moveGhosts();
         
         
@@ -61,7 +62,7 @@ export default class GhostBlasters {
         if (this.running) {
             requestAnimationFrame(this.animate.bind(this));
             this.drawSparkles(this.ctx);
-            // this.level.randomGhost(1000)
+            // this.level.randomGhost()
         }
     }
 

@@ -37,8 +37,8 @@ export default class Level {
         {
         // 1: {
 
-            left: 600,
-            right: CONSTANTS.GHOST_WIDTH + 600,
+            left: 1200,
+            right: CONSTANTS.GHOST_WIDTH + 1200,
             top: height, 
             bottom: CONSTANTS.GHOST_HEIGHT + height,
             shot: false
@@ -77,8 +77,8 @@ export default class Level {
 
     moveGhosts() {
         this.eachGhost(function(ghost) {
-           ghost.left -= 5;
-           ghost.right -= 5; 
+           ghost.left -= 2 ;
+           ghost.right -= 2 ; 
         })
 
         // if (this.ghosts[0].right <= 0 ) {
