@@ -36,42 +36,20 @@ export default class GhostBlasters {
             this.play();
         }
 
-            this.level.moveHouse();
+        this.level.moveHouse();
+        this.level.moveGhosts();
         
         
     }
 
-    startGame() {
-        this.ctx.font = "20pt Creepster";
-        this.ctx.fillStyle = "#b30000";
-        this.ctx.fillText("Press any key to start", 365, 350);
-    }
-
-    instructions() {
-        this.ctx.font = "20pt Creepster";
-        this.ctx.fillStyle = "#b30000";
-        this.ctx.fillText("Click on ghosts to shoot them.", 315, 250); 
-    }
-
-    highScore() {
-        this.ctx.font = "20pt Creepster";
-        this.ctx.fillStyle = "#b30000";
-        this.ctx.fillText("Shoot as many ghosts as possible to get a high score!", 225, 300); 
-    }
-
-    howToPlay() {
-        this.ctx.font = "30pt Creepster";
-        this.ctx.fillStyle = "#b30000";
-        this.ctx.fillText("How to play:", 395, 200); 
-    }
 
     drawSparkles(ctx) {
         var sparkles = new Image();
         sparkles.src = '../images/stars.png';
-        ctx.drawImage(sparkles, 200, 700, 100, 100)
+        ctx.drawImage(sparkles, 180, 725  , 100, 100)
         sparkles.onload = function () {
 
-            ctx.drawImage(sparkles, 200, 700, 100, 100)
+            ctx.drawImage(sparkles, 180, 725  , 100, 100)
         }
     }
  
@@ -83,6 +61,31 @@ export default class GhostBlasters {
         if (this.running) {
             requestAnimationFrame(this.animate.bind(this));
             this.drawSparkles(this.ctx);
+            // this.level.randomGhost(1000)
         }
+    }
+
+    startGame() {
+        this.ctx.font = "20pt Creepster";
+        this.ctx.fillStyle = "#b30000";
+        this.ctx.fillText("Press any key to start", 365, 350);
+    }
+
+    instructions() {
+        this.ctx.font = "20pt Creepster";
+        this.ctx.fillStyle = "#b30000";
+        this.ctx.fillText("Click on ghosts to shoot them.", 315, 250);
+    }
+
+    highScore() {
+        this.ctx.font = "20pt Creepster";
+        this.ctx.fillStyle = "#b30000";
+        this.ctx.fillText("Shoot as many ghosts as possible to get a high score!", 225, 300);
+    }
+
+    howToPlay() {
+        this.ctx.font = "30pt Creepster";
+        this.ctx.fillStyle = "#b30000";
+        this.ctx.fillText("How to play:", 395, 200);
     }
 }

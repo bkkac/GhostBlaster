@@ -1,5 +1,6 @@
 const CONSTANTS = {
-    GHOST_WIDTH: 150,
+    GHOST_WIDTH: 63,
+    GHOST_HEIGHT: 70,
     EDGE_BUFFER: 50,
     WARM_UP_SECONDS: 1
 };
@@ -13,7 +14,7 @@ export default class Level {
        this.ghost_x = 635; 
        this.velocity = 5;
        this.ghosts = [
-
+            this.randomGhost()
        ]
    } 
 
@@ -28,28 +29,39 @@ export default class Level {
    }
 
    randomGhost(x) {
+        //     var unshotGhost = new Image();
+            // unshotGhost.src = '../images/unshot_ghost.png';
+            // ghost.drawImage(unshotGhost, 50, ghost.left, 63, 70)
+            // console.log(unshotGhost.src);
+            // unshotGhost.onload = function () {
 
+            //     ghost.drawImage(unshotGhost, 50, ghost.left, 63, 70)
+            // }
+       const height = Math.floor(Math.random() * 551) + 10; 
     const ghost = {
-            left: x,
-            right: CONSTANTS.PIPE_WIDTH + x,
-            top: 0, 
-            bottom: this.dimensions.height,
-            shot: false,
+        left: x,
+        right: CONSTANTS.GHOST_WIDTH + x,
+        top: height, 
+        bottom: CONSTANTS.GHOST_HEIGHT + height,
+        shot: false
         }
         return ghost;
     }
-//    }
 
-    newGhost(ctx) {
+    drawGhosts(ctx) {
+        this.eachGhost(function(ghost) {
+            let unshotGhost = new Image();
+            unshotGhost.src = '../images/unshot_ghost.png';
+            ctx.drawImage(unshotGhost, ghost.top, ghost.bottom, CONSTANTS.GHOST_WIDTH, CONSTANTS.GHOST_HEIGHT)
+            console.log(unshotGhost.src);
+            unshotGhost.onload = function () {
 
-        var unshotGhost = new Image();
-        unshotGhost.src = '../images/unshot_ghost.png';
-
-        unshotGhost.onload = function () {
-
-            ctx.drawImage(unshotGhost, 50, this.ghost_x, 63, 70)
+                ctx.drawImage(unshotGhost, ghost.top, ghost.bottom, CONSTANTS.GHOST_WIDTH, CONSTANTS.GHOST_HEIGHT)
+            }
         }
+        )
     }
+
 
     shotGhost(ctx) {
 
@@ -62,8 +74,21 @@ export default class Level {
         }
     }
 
-    moveGhost(ctx) {
-        this.ghost_x -= this.velocity;
+    moveGhosts() {
+        this.eachGhost(function(ghost) {
+           ghost.left -= 5;
+           ghost.right -= 5; 
+        })
+
+        if (this.ghosts[0].right <= 0 ) {
+            this.ghosts.shift();
+            const newGhost = this.ghosts[1].left + 700;
+            this.ghosts.push(this.randomGhost(newGhost))
+        }
+    }
+
+    eachGhost(callback) {
+        this.ghosts.forEach(callback.bind(this));
     }
 
     drawHouse(ctx) {
@@ -77,8 +102,10 @@ export default class Level {
         }
     }
     animate(ctx) {
-
+    
         this.drawHouse(ctx);
         this.moveHouse(ctx);
+        this.moveGhosts();
+        this.drawGhosts(ctx);
     }
 }
