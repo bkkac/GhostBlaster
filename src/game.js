@@ -1,5 +1,6 @@
 import Level from "./level";
-import Shooter from "./shooter"
+import Shooter from "./shooter";
+import Bullet from "./bullet";
 
 export default class GhostBlasters {
     constructor(canvas) {
@@ -62,7 +63,7 @@ export default class GhostBlasters {
         if (this.running) {
             requestAnimationFrame(this.animate.bind(this));
             this.drawSparkles(this.ctx);
-            // this.level.randomGhost()
+            
         }
     }
 

@@ -13,6 +13,7 @@ export default class Level {
        this.house_y = 550;
        this.ghost_x = 635; 
        this.velocity = 5;
+    //    this.ghost_count = 0;
        this.ghosts = [
            this.randomGhost()
        ]
@@ -30,27 +31,29 @@ export default class Level {
 
    randomGhost() {
        let that = this;
-       console.log(that);
-    //    const k = this.ghosts.length + 1;
        const height = Math.floor(Math.random() * 551) + 10; 
-        const ghost = 
-        {
-        // 1: {
-
-            left: 1200,
-            right: CONSTANTS.GHOST_WIDTH + 1200,
-            top: height, 
-            bottom: CONSTANTS.GHOST_HEIGHT + height,
-            shot: false
-        // }
+       const ghost = 
+       {
+           
+           left: 1200,
+           right: CONSTANTS.GHOST_WIDTH + 1200,
+           top: height, 
+           bottom: CONSTANTS.GHOST_HEIGHT + height,
+           shot: false
         }
-        // console.log(this)
-        // this.ghosts.push(ghost);
+        
+        // this.ghosts +=  ghost;
+        console.log(this.ghosts)
         return ghost;
+    }
+
+    generateGhosts() {
+        setTimeout(this.randomGhost(), 5000)
     }
 
     drawGhosts(ctx) {
         this.eachGhost(function(ghost) {
+            console.log("ghost", ghost)
             let unshotGhost = new Image();
             unshotGhost.src = './images/unshot_ghost.png';
             ctx.drawImage(unshotGhost, ghost.left, ghost.top, CONSTANTS.GHOST_WIDTH, CONSTANTS.GHOST_HEIGHT)
@@ -84,7 +87,7 @@ export default class Level {
         // if (this.ghosts[0].right <= 0 ) {
         //     this.ghosts.shift();
         //     const newGhost = this.ghosts[1].left + 700;
-        //     this.ghosts.push(this.randomGhost(newGhost))
+            // this.ghosts.push(this.generateGhosts())
         // }
     }
 
@@ -108,7 +111,9 @@ export default class Level {
         this.moveHouse(ctx);
         this.moveGhosts();
         this.drawGhosts(ctx);
+        // this.ghosts.push(this.drawGhosts(ctx));
+        // console.log(this.ghosts)
     }
-}
+ }
 
 // webpack --mode=development --watch
