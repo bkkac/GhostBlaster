@@ -18,15 +18,15 @@ export default class Bullet {
             const b = y - this.top;
             const c = (a * a) + (b * b); 
             if (x < this.left) {
-               this.left -= (a + this.speed); 
-               this.right -= (a + this.speed); 
-               this.top += b + this.speed;
-               this.bottom += b + this.speed;
+               this.left -= (this.speed); 
+               this.right -= (this.speed); 
+               this.top -=  this.speed;
+               this.bottom -=  this.speed;
             } else {
-                this.left += (a + this.speed);
-                this.right += (a + this.speed);
-                this.top += b + this.speed;
-                this.bottom += b + this.speed;
+                this.left += (this.speed);
+                this.right += (this.speed);
+                this.top -=  this.speed;
+                this.bottom -=  this.speed;
             }
             console.log("move", this);
     }

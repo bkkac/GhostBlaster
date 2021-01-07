@@ -42,8 +42,7 @@ export default class Level {
            shot: false
         }
         
-        // this.ghosts +=  ghost;
-        // console.log(this.ghosts)
+
         return ghost;
     }
 
@@ -53,11 +52,11 @@ export default class Level {
 
     drawGhosts(ctx) {
         this.eachGhost(function(ghost) {
-            // console.log("ghost", ghost)
+
             let unshotGhost = new Image();
             unshotGhost.src = './images/unshot_ghost.png';
             ctx.drawImage(unshotGhost, ghost.left, ghost.top, CONSTANTS.GHOST_WIDTH, CONSTANTS.GHOST_HEIGHT)
-            // console.log(unshotGhost.src);
+
             unshotGhost.onload = function () {
 
                 ctx.drawImage(unshotGhost, ghost.left, ghost.top, CONSTANTS.GHOST_WIDTH, CONSTANTS.GHOST_HEIGHT)
@@ -84,11 +83,6 @@ export default class Level {
            ghost.right -= 2 ; 
         })
 
-        // if (this.ghosts[0].right <= 0 ) {
-        //     this.ghosts.shift();
-        //     const newGhost = this.ghosts[1].left + 700;
-            // this.ghosts.push(this.generateGhosts())
-        // }
     }
 
     eachGhost(callback) {

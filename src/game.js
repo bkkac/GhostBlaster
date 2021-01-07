@@ -7,6 +7,10 @@ export default class GhostBlasters {
         this.ctx = canvas.getContext("2d");
         this.dimensions = { width: canvas.width, height: canvas.height };
         this.ghost_gen = 1;
+        this.creepster = new FontFace(
+            "Creepster",
+            "url(images/Creepster-Regular.ttf)"
+        )
         this.registerEvents();
         this.restart();
     }
@@ -87,26 +91,37 @@ export default class GhostBlasters {
     }
 
     startGame() {
-        this.ctx.font = "20pt Creepster";
-        this.ctx.fillStyle = "#b30000";
-        this.ctx.fillText("Press any key to start", 365, 350);
+        this.creepster.load().then((font) => {
+
+            this.ctx.font = "20pt Creepster";
+            this.ctx.fillStyle = "#b30000";
+            this.ctx.fillText("Press any key to start", 365, 350);
+        })
     }
 
     instructions() {
-        this.ctx.font = "20pt Creepster";
-        this.ctx.fillStyle = "#b30000";
-        this.ctx.fillText("Click on ghosts to shoot them.", 315, 250);
+        this.creepster.load().then((font) => {
+            this.ctx.font = "20pt Creepster";
+            this.ctx.fillStyle = "#b30000";
+            this.ctx.fillText("Click on ghosts to shoot them.", 315, 250);
+        })
     }
 
     highScore() {
-        this.ctx.font = "20pt Creepster";
-        this.ctx.fillStyle = "#b30000";
-        this.ctx.fillText("Shoot as many ghosts as possible to get a high score!", 225, 300);
+        this.creepster.load().then((font) => {
+
+            this.ctx.font = "20pt Creepster";
+            this.ctx.fillStyle = "#b30000";
+            this.ctx.fillText("Shoot as many ghosts as possible to get a high score!", 225, 300);
+        })
     }
 
     howToPlay() {
-        this.ctx.font = "30pt Creepster";
-        this.ctx.fillStyle = "#b30000";
-        this.ctx.fillText("How to play:", 395, 200);
+        this.creepster.load().then((font) => {
+
+            this.ctx.font = "30pt Creepster";
+            this.ctx.fillStyle = "#b30000";
+            this.ctx.fillText("How to play:", 395, 200);
+        })
     }
 }
