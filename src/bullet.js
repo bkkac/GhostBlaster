@@ -7,41 +7,28 @@ export default class Bullet {
 
     }
 
-    newBullet() {
-        const bullet = {
-            left: 300,
-            top: 700,
-            right: 302,
-            bottom: 702
-        }
+    // newBullet() {
+    //     const bullet = {
+    //         left: 300,
+    //         top: 700,
+    //         right: 302,
+    //         bottom: 702
+    //     }
 
-        return bullet;
-    }
+    //     return bullet;
+    // }
 
     moveBullet(x, y) {
-        // console.log(x);
-        // this.eachBullet(function (bullet) {
-            // if (x < this.position[0]) {
-            //    bullet.position[0] -= this.speed; 
-            //     bullet.right -= this.speed; 
-            //    bullet.position[1] -=  this.speed;
-            //    bullet.bottom -=  this.speed;
-            // } else {
-            //     bullet.position[0] += (this.speed);
-            //     bullet.right += (this.speed);
-            //     bullet.position[1] -=  this.speed;
-            //     bullet.bottom -=  this.speed;
-            // }
+
             if (x) {
 
                 this.speed[0] = (x - this.position[0]) / 30;
                 this.speed[1] = (y - this.position[1]) / 30;
             } else {
-                this.position[0] += this.speed[0];
-                this.position[1] += this.speed[1]
+                this.position[0] += this.speed[0]
+                this.position[1] += this.speed[1];
             }
 
-        // })
 
     }
 

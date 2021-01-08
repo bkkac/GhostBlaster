@@ -9,6 +9,7 @@ export default class GhostBlasters {
         this.dimensions = { width: canvas.width, height: canvas.height };
         this.ghost_gen = 1;
         this.bullets = [];
+        this.ghosts = [];
         this.creepster = new FontFace(
             "Creepster",
             "url(images/Creepster-Regular.ttf)"
@@ -54,6 +55,10 @@ export default class GhostBlasters {
         if (!this.running) {
             this.play();
         }
+        console.log(this.bullets.length);
+        if (this.bullets.length > 15) {
+            this.bullets.shift();
+        }
         
         // console.log("game", this.bullet);
         // const bullet = this.bullet.newBullet;
@@ -66,7 +71,7 @@ export default class GhostBlasters {
  
         const x = e.clientX;
         const y = e.clientY;
-        console.log(x, y)
+        // console.log(x, y)
        
         bullet.moveBullet(x, y); 
     }

@@ -1,5 +1,19 @@
 import { ContextExclusionPlugin } from "webpack";
 
+const CONSTANTS = {
+    GHOST_WIDTH: 63,
+    GHOST_HEIGHT: 70,
+    EDGE_BUFFER: 50,
+    WARM_UP_SECONDS: 1
+};
+
+
+const CONSTANTS = {
+    GHOST_WIDTH: 63,
+    GHOST_HEIGHT: 70,
+    EDGE_BUFFER: 50,
+    WARM_UP_SECONDS: 1
+};
 export default class Ghost {
 
     constructor(dimensions) {
@@ -30,6 +44,16 @@ export default class Ghost {
 
             ctx.drawImage(shotGhost, 50, 35, this.ghost_x, 70)
         }
+    }
+
+    drawGhost() {
+        let unshotGhost = new Image();
+        unshotGhost.src = './images/unshot_ghost.png';
+        ctx.drawImage(unshotGhost, ghost.left, ghost.top, CONSTANTS.GHOST_WIDTH, CONSTANTS.GHOST_HEIGHT)
+
+        unshotGhost.onload = function () {
+
+            ctx.drawImage(unshotGhost, ghost.left, ghost.top, CONSTANTS.GHOST_WIDTH, CONSTANTS.GHOST_HEIGHT)
     }
 
     moveGhost(ctx) {
