@@ -11,6 +11,7 @@ export default class GhostBlasters {
         this.interval = 2000;
         this.bullets = [];
         this.ghosts = [];
+        this.score = 0;
         this.creepster = new FontFace(
             "Creepster",
             "url(images/Creepster-Regular.ttf)"
@@ -126,6 +127,8 @@ export default class GhostBlasters {
             this.hitGhost(this.ctx);
             requestAnimationFrame(this.animate.bind(this));
             this.drawSparkles(this.ctx);
+            this.drawScore();
+            this.gameOver();
             
         }
     }
@@ -135,6 +138,7 @@ export default class GhostBlasters {
             if (this.collidesWith(ghost)) {
                 ghost.velocity = 0;
                 // ghost.deadGhost(ctx);
+                this.score += 1;
                 ghost.dead = true;
                 setTimeout(() => this.ghosts.splice(i, 1), 3000)
 ;
@@ -167,6 +171,14 @@ export default class GhostBlasters {
             }
         });
         return collision;
+    }
+
+    gameOver() {
+        this.ghosts.forEach(ghost => {
+            if (ghost.x + 63 <= 0) {
+                alert("game over")
+            }
+        })
     }
 
     startGame() {
@@ -202,5 +214,13 @@ export default class GhostBlasters {
             this.ctx.fillStyle = "#b30000";
             this.ctx.fillText("How to play:", 395, 200);
         })
+    }
+
+    drawScore() {
+        //loc will be the location 
+        // const loc = { x: this.dimensions.width / 2, y: this.dimensions.height / 4 }
+        this.ctx.font = "30pt Creepster";
+        this.ctx.fillStyle = "#b30000";
+        this.ctx.fillText(this.score, 10, 790);
     }
 }
