@@ -130,10 +130,43 @@ export default class GhostBlasters {
             // this.ghostInterval();
             this.bullets.forEach(bullet => bullet.animate(this.ctx));
             this.ghosts.forEach(ghost => ghost.animate(this.ctx));
+            this.hitGhost(this.ctx);
             requestAnimationFrame(this.animate.bind(this));
             this.drawSparkles(this.ctx);
             
         }
+    }
+
+    hitGhost(ctx) {
+        this.ghosts.forEach(ghost => {
+            if (this.collidesWith(ghost)) {
+                ghost.velocity = 0;
+                ghost.deadGhost(ctx);
+                this.ctx.clearRect(0, 0, ghost.x, ghost.y);
+                // this.animate();
+            }
+        })
+    }
+
+    collidesWith(ghost) {
+ 
+        const _overlap = (bullet, ghost) => {
+            if (bullet.position[0] > ghost.x + 63 || bullet.position[0]+ 100 < ghost.x) {
+                return false;
+            }
+            if (bullet.position[1] > ghost.y + 70 || bullet.position[1] + 100 < ghost.y) {
+                return false;
+            }
+            return true;
+        };
+        let collision = false;
+        this.bullets.forEach((bullet) => {
+            if (
+
+                _overlap(bullet, ghost)
+            ) { collision = true; bullet.speed = [0, 0]}
+        });
+        return collision;
     }
 
     startGame() {

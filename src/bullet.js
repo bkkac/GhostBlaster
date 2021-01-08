@@ -7,16 +7,6 @@ export default class Bullet {
 
     }
 
-    // newBullet() {
-    //     const bullet = {
-    //         left: 300,
-    //         top: 700,
-    //         right: 302,
-    //         bottom: 702
-    //     }
-
-    //     return bullet;
-    // }
 
     moveBullet(x, y) {
 
@@ -24,17 +14,16 @@ export default class Bullet {
 
                 this.speed[0] = (x - this.position[0]);
                 this.speed[1] = (y - this.position[1]);
-            // } else {
+            } else {
+                this.position[0] += (this.speed[0] / 20);
+                this.position[1] += (this.speed[1] / 20);
             }
-            this.position[0] += (this.speed[0] / 20);
-            this.position[1] += (this.speed[1] / 20);
 
 
     }
 
     drawBullet(ctx) {
-        // this.eachBullet(function(bullet) {
-            // console.log(this);
+
             
             let newbullet = new Image();
             newbullet.src = "./images/bullet.png";
@@ -43,16 +32,12 @@ export default class Bullet {
             newbullet.onload = function () {
                 ctx.drawImage(newbullet, that.position[0], that.position[1], 100, 100) 
             }
-        // })
-        // console.log(ctx, this)
+
     }
 
-    // eachBullet(callback) {
-    //     this.bullets.forEach(callback.bind(this));
-    // }
 
-    animate(ctx) {
-        
+
+    animate(ctx) { 
         this.drawBullet(ctx);
         this.moveBullet();
     }

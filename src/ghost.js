@@ -42,14 +42,14 @@ export default class Ghost {
         }
     }
 
-    deadGhost(ctx, pos) {
+    deadGhost(ctx) {
         var deadGhost = new Image();
         deadGhost.src = '../images/deadghost.png';
-        ctx.drawImage(deadGhost, this.x, this.y, 63, 70)
+        ctx.drawImage(deadGhost, this.x - 50, this.y - 50, 200, 200)
         let that = this;
         deadGhost.onload = function () {
 
-            ctx.drawImage(deadGhost, that.x, that.y, 63, 70)
+            ctx.drawImage(deadGhost, that.x - 50, that.y - 50, 200, 200)
         } 
      }
 
@@ -61,6 +61,7 @@ export default class Ghost {
     animate(ctx) {
         this.newGhost(ctx);
         this.moveGhost(ctx);
+        // this.deadGhost(ctx);
     }
 
 
