@@ -31,8 +31,7 @@ export default class GhostBlasters {
         this.level = new Level(this.dimensions);
         this.shooter = new Shooter (this.dimensions);
         this.bullet = new Bullet(this.dimensions);
-        this.ghost = new Ghost(this.dimensions);
-        // this.ghosts.push(this.ghost);
+        // this.ghost = new Ghost(this.dimensions);
  
         this.animate(); 
     }
@@ -49,12 +48,7 @@ export default class GhostBlasters {
 
         this.level.moveHouse();
         this.ghostInterval();
-        // this.ghosts.forEach(ghost => ghost.animate(this.ctx))
-        
-        // this.level.ghostInterval();
-        // this.ghost.moveGhost();
-        
-        
+         
     }
 
     shoot(e) {
@@ -70,14 +64,14 @@ export default class GhostBlasters {
         this.bullets.push(bullet);
 
  
-        const x = e.clientX;
-        const y = e.clientY;
-       
+        const x = e.clientX - this.canvas.offsetLeft;
+        const y = e.clientY - this.canvas.offsetTop;
+        debugger
         bullet.moveBullet(x, y); 
     }
 
     ghostInterval() {
-        if (this.ghosts.length % 7 === 0) {
+        if (this.ghosts.length % 10 === 0) {
             this.ghosts.shift();
             this.interval -= 500;
         }
@@ -116,7 +110,7 @@ export default class GhostBlasters {
         this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height);
         this.level.animate(this.ctx);
         this.shooter.animate(this.ctx);
-        this.ghost.animate(this.ctx);
+        // this.ghost.animate(this.ctx);
         
         
         if (!this.running) {
@@ -140,8 +134,9 @@ export default class GhostBlasters {
         this.ghosts.forEach((ghost, i) => {
             if (this.collidesWith(ghost)) {
                 ghost.velocity = 0;
-                ghost.deadGhost(ctx);
-                this.ghosts.splice(i, i+1)
+                // ghost.deadGhost(ctx);
+                ghost.dead = true;
+                setTimeout(() => this.ghosts.splice(i, 1), 3000)
 ;
             }
         })
@@ -150,6 +145,9 @@ export default class GhostBlasters {
     collidesWith(ghost) {
  
         const _overlap = (bullet, ghost) => {
+            if (ghost.dead) {
+                return false;
+            }
             if (bullet.position[0] > ghost.x + 63 || bullet.position[0]+ 100 < ghost.x) {
                 return false;
             }

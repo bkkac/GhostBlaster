@@ -3,7 +3,7 @@ export default class Bullet {
 
         this.radius = 2;
         this.speed = [0, 0]; 
-        this.position = [350, 650]
+        this.position = [280, 770]
 
     }
 
@@ -11,7 +11,7 @@ export default class Bullet {
     moveBullet(x, y) {
 
             if (x) {
-
+                // debugger
                 this.speed[0] = (x - this.position[0]);
                 this.speed[1] = (y - this.position[1]);
             } else {
