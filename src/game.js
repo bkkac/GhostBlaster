@@ -11,6 +11,7 @@ export default class GhostBlasters {
         this.interval = 2000;
         this.bullets = [];
         this.ghosts = [];
+        this.count = 1;
         this.score = 0;
         this.creepster = new FontFace(
             "Creepster",
@@ -72,10 +73,6 @@ export default class GhostBlasters {
     }
 
     ghostInterval() {
-        if (this.ghosts.length % 10 === 0) {
-            this.ghosts.shift();
-            this.interval -= 500;
-        }
 
         setInterval(this.addGhost.bind(this), this.interval)
         
@@ -83,16 +80,20 @@ export default class GhostBlasters {
 
     }
 
-    addGhost(count) {
-        for (let ghost = 0; ghost < count; ghost++) {
-            const ghost = new Ghost(this.dimensions)
-            this.ghosts.push(ghost)
+    // changeGhostCount() {
+    //     setTimeout(() => this.count+= 1, 10000)
+    // }
+
+
+    addGhost() {
+        // for (let ghost = 0; ghost < this.count; ghost++) {
+            // const ghost = new Ghost(this.dimensions)
+            // this.ghosts.push(ghost)
             
-        }
+        // }
         const ghost = new Ghost(this.dimensions) 
         this.ghosts.push(ghost);
         ghost.animate(this.ctx);
-        console.log(this.ghosts);
         
     }
 
@@ -123,6 +124,7 @@ export default class GhostBlasters {
         }
         if (this.running) {
             // this.ghostInterval();
+            // this.changeGhostCount()
             this.drawScore();
             this.bullets.forEach(bullet => bullet.animate(this.ctx));
             this.ghosts.forEach(ghost => ghost.animate(this.ctx));
