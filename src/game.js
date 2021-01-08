@@ -8,7 +8,7 @@ export default class GhostBlasters {
         this.ctx = canvas.getContext("2d");
         this.canvas = canvas;
         this.dimensions = { width: canvas.width, height: canvas.height };
-        this.interval = 5000;
+        this.interval = 2000;
         this.bullets = [];
         this.ghosts = [];
         this.creepster = new FontFace(
@@ -32,7 +32,7 @@ export default class GhostBlasters {
         this.shooter = new Shooter (this.dimensions);
         this.bullet = new Bullet(this.dimensions);
         this.ghost = new Ghost(this.dimensions);
-        this.ghosts.push(this.ghost);
+        // this.ghosts.push(this.ghost);
  
         this.animate(); 
     }
@@ -84,7 +84,6 @@ export default class GhostBlasters {
 
         setInterval(this.addGhost.bind(this), this.interval)
         
-        // console.log(this.ghos ts);
 
 
     }
@@ -138,12 +137,12 @@ export default class GhostBlasters {
     }
 
     hitGhost(ctx) {
-        this.ghosts.forEach(ghost => {
+        this.ghosts.forEach((ghost, i) => {
             if (this.collidesWith(ghost)) {
                 ghost.velocity = 0;
                 ghost.deadGhost(ctx);
-                this.ctx.clearRect(0, 0, ghost.x, ghost.y);
-                // this.animate();
+                this.ghosts.splice(i, i+1)
+;
             }
         })
     }
@@ -160,11 +159,14 @@ export default class GhostBlasters {
             return true;
         };
         let collision = false;
-        this.bullets.forEach((bullet) => {
+        this.bullets.forEach((bullet, j) => {
             if (
 
                 _overlap(bullet, ghost)
-            ) { collision = true; bullet.speed = [0, 0]}
+            ) { collision = true; 
+                bullet.speed = [0, 0];
+                this.bullets.splice(j, j+1)
+            }
         });
         return collision;
     }

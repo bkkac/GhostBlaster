@@ -61,7 +61,7 @@ export default class Ghost {
     animate(ctx) {
         this.newGhost(ctx);
         this.moveGhost(ctx);
-        // this.deadGhost(ctx);
+        // this.deadGhos t(ctx);
     }
 
 
