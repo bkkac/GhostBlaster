@@ -68,7 +68,7 @@ export default class GhostBlasters {
  
         const x = e.clientX - this.canvas.offsetLeft;
         const y = e.clientY - this.canvas.offsetTop;
-        debugger
+        // debugger
         bullet.moveBullet(x, y); 
     }
 
