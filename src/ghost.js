@@ -47,11 +47,11 @@ export default class Ghost {
     deadGhost(ctx) {
         var deadGhost = new Image();
         deadGhost.src = './images/deadghost.png';
-        ctx.drawImage(deadGhost, this.x , this.y , 70, 70)
+        ctx.drawImage(deadGhost, this.x, this.y + 15, 70, 70)
         let that = this;
         deadGhost.onload = function () {
 
-            ctx.drawImage(deadGhost, that.x , that.y , 70, 70)
+            ctx.drawImage(deadGhost, that.x , that.y + 15, 70, 70)
         } 
      }
 

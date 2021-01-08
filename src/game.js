@@ -171,7 +171,7 @@ export default class GhostBlasters {
 
     startGame() {
         this.creepster.load().then((font) => {
-
+            document.fonts.add(font);
             this.ctx.font = "20pt Creepster";
             this.ctx.fillStyle = "#b30000";
             this.ctx.fillText("Press any key to start", 365, 400);
@@ -180,6 +180,7 @@ export default class GhostBlasters {
 
     instructions() {
         this.creepster.load().then((font) => {
+            document.fonts.add(font);
             this.ctx.font = "20pt Creepster";
             this.ctx.fillStyle = "#b30000";
             this.ctx.fillText("Click on ghosts to shoot them.", 315, 250);
@@ -188,7 +189,7 @@ export default class GhostBlasters {
 
     highScore() {
         this.creepster.load().then((font) => {
-
+            document.fonts.add(font);
             this.ctx.font = "20pt Creepster";
             this.ctx.fillStyle = "#b30000";
             this.ctx.fillText("Shoot as many ghosts as you can", 305, 300);
@@ -196,7 +197,7 @@ export default class GhostBlasters {
     }
     lose() {
         this.creepster.load().then((font) => {
-
+            document.fonts.add(font);
             this.ctx.font = "20pt Creepster";
             this.ctx.fillStyle = "#b30000";
             this.ctx.fillText("If a ghost makes it across the screen, you lose", 245, 350);
@@ -205,7 +206,7 @@ export default class GhostBlasters {
 
     howToPlay() {
         this.creepster.load().then((font) => {
-
+            document.fonts.add(font);
             this.ctx.font = "30pt Creepster";
             this.ctx.fillStyle = "#b30000";
             this.ctx.fillText("How to play:", 395, 200);
