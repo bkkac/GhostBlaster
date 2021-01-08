@@ -1,16 +1,8 @@
-import { ContextExclusionPlugin } from "webpack";
-
-const CONSTANTS = {
-    GHOST_WIDTH: 63,
-    GHOST_HEIGHT: 70,
-    EDGE_BUFFER: 50,
-    WARM_UP_SECONDS: 1
-};
 
 export default class Ghost {
 
     constructor(dimensions) {
-        this.velocity = 2;
+        this.velocity = 4;
         this.dimensions = dimensions;
         this.dead = false;
         this.y = Math.floor(Math.random() * 551) + 10;
