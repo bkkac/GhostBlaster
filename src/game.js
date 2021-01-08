@@ -173,13 +173,7 @@ export default class GhostBlasters {
         return collision;
     }
 
-    gameOver() {
-        this.ghosts.forEach(ghost => {
-            if (ghost.x + 63 <= 0) {
-                alert("game over")
-            }
-        })
-    }
+
 
     startGame() {
         this.creepster.load().then((font) => {
@@ -222,5 +216,13 @@ export default class GhostBlasters {
         this.ctx.font = "30pt Creepster";
         this.ctx.fillStyle = "#b30000";
         this.ctx.fillText(this.score, 10, 790);
+    }
+
+    gameOver() {
+        this.ghosts.forEach(ghost => {
+            if (ghost.x + 63 <= 0) {
+                alert("game over")
+            }
+        })
     }
 }
