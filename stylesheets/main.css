@@ -16,6 +16,40 @@ body {
     background-color: black;
 }
 
+#sound-on {
+    color: #b30000;
+    background-color: black; 
+    font-family: 'Creepster', cursive;
+    margin: 10px;
+    height: 50px;
+    width: 100px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16pt;
+    /* text-align: center;
+    vertical-align: center; */
+}
+#sound-off {
+    color: #b30000;
+    background-color: black; 
+    font-family: 'Creepster', cursive;
+    margin: 10px;
+    height: 50px;
+    width: 100px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16pt;
+}
+
+#button-container {
+    display: flex;
+
+}
+
 h1 {
     color:#b30000;
     font-family: 'Creepster', cursive;
