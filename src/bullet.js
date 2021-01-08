@@ -22,12 +22,12 @@ export default class Bullet {
 
             if (x) {
 
-                this.speed[0] = (x - this.position[0]) / 30;
-                this.speed[1] = (y - this.position[1]) / 30;
-            } else {
-                this.position[0] += this.speed[0]
-                this.position[1] += this.speed[1];
+                this.speed[0] = (x - this.position[0]);
+                this.speed[1] = (y - this.position[1]);
+            // } else {
             }
+            this.position[0] += (this.speed[0] / 20);
+            this.position[1] += (this.speed[1] / 20);
 
 
     }
