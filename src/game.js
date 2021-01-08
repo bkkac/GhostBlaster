@@ -15,7 +15,7 @@ export default class GhostBlasters {
         this.score = 0;
         this.creepster = new FontFace(
             "Creepster",
-            "url(images/Creepster-Regular.ttf)"
+            "url(./images/Creepster-Regular.ttf)"
         )
         this.registerEvents();
         this.restart();
@@ -80,17 +80,10 @@ export default class GhostBlasters {
 
     }
 
-    // changeGhostCount() {
-    //     setTimeout(() => this.count+= 1, 10000)
-    // }
 
 
     addGhost() {
-        // for (let ghost = 0; ghost < this.count; ghost++) {
-            // const ghost = new Ghost(this.dimensions)
-            // this.ghosts.push(ghost)
-            
-        // }
+
         const ghost = new Ghost(this.dimensions) 
         this.ghosts.push(ghost);
         ghost.animate(this.ctx);
