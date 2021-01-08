@@ -13,7 +13,7 @@ export default class Ghost {
     newGhost(ctx) {
 
         var unshotGhost = new Image();
-        unshotGhost.src = '../images/unshot_ghost.png';
+        unshotGhost.src = './images/unshot_ghost.png';
         ctx.drawImage(unshotGhost, this.x, this.y, 63, 70)
 
         let that = this;
@@ -34,7 +34,7 @@ export default class Ghost {
     shotGhost(ctx, pos) {
 
         var shotGhost = new Image();
-        shotGhost.src = '../images/shot_ghost.png';
+        shotGhost.src = './images/shot_ghost.png';
         ctx.drawImage(shotGhost, this.x, this.y, 63, 70)
         let that = this;
         shotGhost.onload = function () {
@@ -46,7 +46,7 @@ export default class Ghost {
 
     deadGhost(ctx) {
         var deadGhost = new Image();
-        deadGhost.src = '../images/deadghost.png';
+        deadGhost.src = './images/deadghost.png';
         ctx.drawImage(deadGhost, this.x , this.y , 70, 70)
         let that = this;
         deadGhost.onload = function () {
