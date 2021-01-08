@@ -183,7 +183,7 @@ export default class GhostBlasters {
             document.fonts.add(font);
             this.ctx.font = "20pt Creepster";
             this.ctx.fillStyle = "#b30000";
-            this.ctx.fillText("Click on ghosts to shoot them.", 315, 250);
+            this.ctx.fillText("Click on ghosts to shoot them", 315, 250);
         })
     }
 
