@@ -36,11 +36,13 @@ export default class GhostBlasters {
         // this.ghost = new Ghost(this.dimensions);
  
         this.animate(); 
+        // this.ghostInterval();
     }
 
     play() {
        this.running = true;
        this.animate(); 
+       this.ghostInterval();
     }
 
     click(e) {
@@ -49,33 +51,31 @@ export default class GhostBlasters {
         }
 
         this.level.moveHouse();
-        this.ghostInterval();
+
          
     }
 
     shoot(e) {
-        if (!this.running) {
-            this.play();
-        }
-        console.log(this.bullets.length);
-        if (this.bullets.length > 15) {
-            this.bullets.shift();
-        }
-        
-        const bullet = new Bullet();
-        this.bullets.push(bullet);
+        if (this.running) {
 
- 
-        const x = e.clientX - this.canvas.offsetLeft;
-        const y = e.clientY - this.canvas.offsetTop;
-        // debugger
-        bullet.moveBullet(x, y); 
+            if (this.bullets.length > 15) {
+                this.bullets.shift();
+            }
+            
+            const bullet = new Bullet();
+            this.bullets.push(bullet);
+    
+     
+            const x = e.clientX - this.canvas.offsetLeft;
+            const y = e.clientY - this.canvas.offsetTop;
+            // debugger
+            bullet.moveBullet(x, y); 
+        }
     }
 
     ghostInterval() {
 
-        setInterval(this.addGhost.bind(this), this.interval)
-        
+        setInterval(this.addGhost.bind(this), 1000)
 
 
     }
@@ -94,7 +94,7 @@ export default class GhostBlasters {
     drawSparkles(ctx) {
         var sparkles = new Image();
         sparkles.src = './images/stars.png';
-        ctx.drawImage(sparkles, 180, 725  , 100, 100)
+        ctx.drawImage(sparkles, 180, 725, 100, 100)
         sparkles.onload = function () {
 
             ctx.drawImage(sparkles, 180, 725, 100, 100)
@@ -116,8 +116,6 @@ export default class GhostBlasters {
             this.startGame();
         }
         if (this.running) {
-            // this.ghostInterval();
-            // this.changeGhostCount()
             this.drawScore();
             this.bullets.forEach(bullet => bullet.animate(this.ctx));
             this.ghosts.forEach(ghost => ghost.animate(this.ctx));
@@ -136,7 +134,7 @@ export default class GhostBlasters {
                 ghost.velocity = 0;
                 // ghost.deadGhost(ctx);
                 ghost.dead = true;
-                setTimeout(() => this.ghosts.splice(i, 1), 1000)
+                setTimeout(() => this.ghosts.splice(i, 1), 500)
 ;
             }
         })
