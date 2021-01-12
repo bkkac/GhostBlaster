@@ -29,10 +29,13 @@ export default class GhostBlasters {
     }
 
     restart() {
+        this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height);
         this.running = false;
+        this.ghosts = [];
         this.level = new Level(this.dimensions);
         this.shooter = new Shooter (this.dimensions);
         this.bullet = new Bullet(this.dimensions);
+        this.score = 0;
         // this.ghost = new Ghost(this.dimensions);
  
         this.animate(); 
@@ -134,11 +137,15 @@ export default class GhostBlasters {
                 ghost.velocity = 0;
                 // ghost.deadGhost(ctx);
                 ghost.dead = true;
-                setTimeout(() => this.ghosts.splice(i, 1), 500)
-;
+                setTimeout(() => this.ghosts.splice(i, 1), 500);
             }
         })
+        // look into filtering
     }
+
+
+
+
 
     collidesWith(ghost) {
  

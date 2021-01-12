@@ -9,12 +9,12 @@ body {
     align-items: center;
     position: relative;
     background-image: url('../images/graveyard.jpg');
-    background-size: 1700px 1000 px;
+    background-size: 1700px 1200px;
 }
 
 #game-canvas {
     background-color: black;
-    /* margin:  */
+    margin-bottom: 50px; 
 }
 
 #sound-on {
@@ -56,4 +56,5 @@ h1 {
     font-family: 'Creepster', cursive;
     font-weight: 200;
     font-size: 50px;
+    margin-bottom: 0px;
 }
