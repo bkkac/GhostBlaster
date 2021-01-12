@@ -131,15 +131,19 @@ export default class GhostBlasters {
     }
 
     hitGhost(ctx) {
+
         this.ghosts.forEach((ghost, i) => {
             if (this.collidesWith(ghost)) {
                 this.score += 1;
                 ghost.velocity = 0;
                 // ghost.deadGhost(ctx);
                 ghost.dead = true;
-                setTimeout(() => this.ghosts.splice(i, 1), 500);
+                // debugger
+                setTimeout(() => this.ghosts = this.ghosts.filter(ghost => !ghost.dead), 1000)
             }
         })
+        // debugger
+        // this.ghosts.filter(ghost => !ghost.dead)
         // look into filtering
     }
 
