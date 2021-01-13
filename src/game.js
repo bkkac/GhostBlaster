@@ -11,10 +11,11 @@ export default class GhostBlasters {
         this.interval = 2000;
         this.bullets = [];
         this.ghosts = [];
+        this.count = 1;
         this.score = 0;
         this.creepster = new FontFace(
             "Creepster",
-            "url(images/Creepster-Regular.ttf)"
+            "url(./images/Creepster-Regular.ttf)"
         )
         this.registerEvents();
         this.restart();
@@ -28,18 +29,23 @@ export default class GhostBlasters {
     }
 
     restart() {
+        this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height);
         this.running = false;
+        this.ghosts = [];
         this.level = new Level(this.dimensions);
         this.shooter = new Shooter (this.dimensions);
         this.bullet = new Bullet(this.dimensions);
+        this.score = 0;
         // this.ghost = new Ghost(this.dimensions);
  
         this.animate(); 
+        // this.ghostInterval();
     }
 
     play() {
        this.running = true;
        this.animate(); 
+       this.ghostInterval();
     }
 
     click(e) {
@@ -48,51 +54,42 @@ export default class GhostBlasters {
         }
 
         this.level.moveHouse();
-        this.ghostInterval();
+
          
     }
 
     shoot(e) {
-        if (!this.running) {
-            this.play();
-        }
-        console.log(this.bullets.length);
-        if (this.bullets.length > 15) {
-            this.bullets.shift();
-        }
-        
-        const bullet = new Bullet();
-        this.bullets.push(bullet);
+        if (this.running) {
 
- 
-        const x = e.clientX - this.canvas.offsetLeft;
-        const y = e.clientY - this.canvas.offsetTop;
-        debugger
-        bullet.moveBullet(x, y); 
+            if (this.bullets.length > 15) {
+                this.bullets.shift();
+            }
+            
+            const bullet = new Bullet();
+            this.bullets.push(bullet);
+    
+     
+            const x = e.clientX - this.canvas.offsetLeft;
+            const y = e.clientY - this.canvas.offsetTop;
+            // debugger
+            bullet.moveBullet(x, y); 
+        }
     }
 
     ghostInterval() {
-        if (this.ghosts.length % 10 === 0) {
-            this.ghosts.shift();
-            this.interval -= 500;
-        }
 
-        setInterval(this.addGhost.bind(this), this.interval)
-        
+        setInterval(this.addGhost.bind(this), 1000)
 
 
     }
 
-    addGhost(count) {
-        for (let ghost = 0; ghost < count; ghost++) {
-            const ghost = new Ghost(this.dimensions)
-            this.ghosts.push(ghost)
-            
-        }
+
+
+    addGhost() {
+
         const ghost = new Ghost(this.dimensions) 
         this.ghosts.push(ghost);
         ghost.animate(this.ctx);
-        console.log(this.ghosts);
         
     }
 
@@ -100,7 +97,7 @@ export default class GhostBlasters {
     drawSparkles(ctx) {
         var sparkles = new Image();
         sparkles.src = './images/stars.png';
-        ctx.drawImage(sparkles, 180, 725  , 100, 100)
+        ctx.drawImage(sparkles, 180, 725, 100, 100)
         sparkles.onload = function () {
 
             ctx.drawImage(sparkles, 180, 725, 100, 100)
@@ -118,33 +115,42 @@ export default class GhostBlasters {
             this.howToPlay();
             this.instructions();
             this.highScore();
+            this.lose();
             this.startGame();
         }
         if (this.running) {
-            // this.ghostInterval();
+            this.drawScore();
             this.bullets.forEach(bullet => bullet.animate(this.ctx));
             this.ghosts.forEach(ghost => ghost.animate(this.ctx));
             this.hitGhost(this.ctx);
             requestAnimationFrame(this.animate.bind(this));
             this.drawSparkles(this.ctx);
-            this.drawScore();
             this.gameOver();
             
         }
     }
 
     hitGhost(ctx) {
+
         this.ghosts.forEach((ghost, i) => {
             if (this.collidesWith(ghost)) {
+                this.score += 1;
                 ghost.velocity = 0;
                 // ghost.deadGhost(ctx);
                 this.score += 1;
                 ghost.dead = true;
-                setTimeout(() => this.ghosts.splice(i, 1), 3000)
-;
+                // debugger
+                setTimeout(() => this.ghosts = this.ghosts.filter(ghost => !ghost.dead), 1000)
             }
         })
+        // debugger
+        // this.ghosts.filter(ghost => !ghost.dead)
+        // look into filtering
     }
+
+
+
+
 
     collidesWith(ghost) {
  
@@ -177,33 +183,42 @@ export default class GhostBlasters {
 
     startGame() {
         this.creepster.load().then((font) => {
-
+            document.fonts.add(font);
             this.ctx.font = "20pt Creepster";
             this.ctx.fillStyle = "#b30000";
-            this.ctx.fillText("Press any key to start", 365, 350);
+            this.ctx.fillText("Press any key to start", 365, 400);
         })
     }
 
     instructions() {
         this.creepster.load().then((font) => {
+            document.fonts.add(font);
             this.ctx.font = "20pt Creepster";
             this.ctx.fillStyle = "#b30000";
-            this.ctx.fillText("Click on ghosts to shoot them.", 315, 250);
+            this.ctx.fillText("Click on ghosts to shoot them", 315, 250);
         })
     }
 
     highScore() {
         this.creepster.load().then((font) => {
-
+            document.fonts.add(font);
             this.ctx.font = "20pt Creepster";
             this.ctx.fillStyle = "#b30000";
-            this.ctx.fillText("Shoot as many ghosts as possible to get a high score!", 225, 300);
+            this.ctx.fillText("Shoot as many ghosts as you can", 305, 300);
+        })
+    }
+    lose() {
+        this.creepster.load().then((font) => {
+            document.fonts.add(font);
+            this.ctx.font = "20pt Creepster";
+            this.ctx.fillStyle = "#b30000";
+            this.ctx.fillText("If a ghost makes it across the screen, you lose", 245, 350);
         })
     }
 
     howToPlay() {
         this.creepster.load().then((font) => {
-
+            document.fonts.add(font);
             this.ctx.font = "30pt Creepster";
             this.ctx.fillStyle = "#b30000";
             this.ctx.fillText("How to play:", 395, 200);
@@ -211,8 +226,6 @@ export default class GhostBlasters {
     }
 
     drawScore() {
-        //loc will be the location 
-        // const loc = { x: this.dimensions.width / 2, y: this.dimensions.height / 4 }
         this.ctx.font = "30pt Creepster";
         this.ctx.fillStyle = "#b30000";
         this.ctx.fillText(this.score, 10, 790);
@@ -221,7 +234,8 @@ export default class GhostBlasters {
     gameOver() {
         this.ghosts.forEach(ghost => {
             if (ghost.x + 63 <= 0) {
-                alert("game over")
+                alert(`game over, score: ${this.score}` );
+                this.restart();
             }
         })
     }
