@@ -26,8 +26,6 @@ export default class Ghost {
             ctx.clearRect(this.x, this.y, 63, 70);
             this.shotGhost(ctx);
             this.deadGhost(ctx);
-            // let that = this;
-            // setTimeout(this.deadGhost(ctx), 1000);
         }
     }
 
@@ -40,7 +38,6 @@ export default class Ghost {
         shotGhost.onload = function () {
 
             ctx.drawImage(shotGhost, that.x, that.y, 63, 70);
-            // setTimeout(that.deadGhost(ctx), 1000);
         }
     }
 

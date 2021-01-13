@@ -71,7 +71,6 @@ export default class GhostBlasters {
      
             const x = e.clientX - this.canvas.offsetLeft;
             const y = e.clientY - this.canvas.offsetTop;
-            // debugger
             bullet.moveBullet(x, y); 
         }
     }
@@ -136,16 +135,11 @@ export default class GhostBlasters {
             if (this.collidesWith(ghost)) {
                 this.score += 1;
                 ghost.velocity = 0;
-                // ghost.deadGhost(ctx);
                 this.score += 1;
                 ghost.dead = true;
-                // debugger
                 setTimeout(() => this.ghosts = this.ghosts.filter(ghost => !ghost.dead), 1000)
             }
         })
-        // debugger
-        // this.ghosts.filter(ghost => !ghost.dead)
-        // look into filtering
     }
 
 
