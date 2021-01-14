@@ -8,12 +8,13 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    background-image: url('../images/graveyard.jpg');
+    background-color: black;
     background-size: 1700px 1200px;
 }
 
 #game-canvas {
-    background-color: black;
+     background-image: url('../images/graveyard.jpg');
+ 
     margin-bottom: 50px; 
 }
 
