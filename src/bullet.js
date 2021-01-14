@@ -25,7 +25,7 @@ export default class Bullet {
 
             
             let newbullet = new Image();
-            newbullet.src = "./images/bullet.png";
+            newbullet.src = "./images/knife_bullet.png";
             ctx.drawImage(newbullet, this.position[0], this.position[1], 100, 100)
             let that = this;
             newbullet.onload = function () {
