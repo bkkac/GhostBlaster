@@ -106,9 +106,7 @@ export default class Level {
         this.moveHouse(ctx);
         this.moveGhosts();
         this.drawGhosts(ctx);
-        // this.shotGhost(ctx);
-        // this.ghosts.push(this.drawGhosts(ctx));
-        // console.log(this.ghosts)
+
     }
  }
 
