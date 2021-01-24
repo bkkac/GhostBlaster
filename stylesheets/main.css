@@ -37,6 +37,11 @@ body {
     align-items: center;
     font-size: 16pt;
 }
+
+#sound-on:hover {
+    background-color: rgb(32,36,44);
+    cursor: pointer;
+}
 #sound-off {
     color: #b30000;
     background-color: black; 
@@ -49,6 +54,11 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 16pt;
+}
+
+#sound-off:hover {
+    background-color: rgb(32,36,44);
+    cursor: pointer;
 }
 
 #button-container {
@@ -72,6 +82,19 @@ h1 {
 
 #footer-link {
     margin: 10px;
+    height: 50px;
+    width: 100px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#footer-link:hover {
+    background-color: rgb(32,36,44);
+    cursor: pointer;
 }
 
 
+    height: 50px;
+    width: 100px;

@@ -13,6 +13,7 @@ export default class GhostBlasters {
         this.ghosts = [];
         this.count = 1;
         this.score = 0;
+        this.gameEnd = false;
         this.creepster = new FontFace(
             "Creepster",
             "url(./images/Creepster-Regular.ttf)"
@@ -31,15 +32,16 @@ export default class GhostBlasters {
     restart() {
         this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height);
         this.running = false;
+        this.gameEnd = false;
         this.ghosts = [];
         this.level = new Level(this.dimensions);
         this.shooter = new Shooter (this.dimensions);
         this.bullet = new Bullet(this.dimensions);
         this.score = 0;
-        // this.ghost = new Ghost(this.dimensions);
+
  
         this.animate(); 
-        // this.ghostInterval();
+  
     }
 
     play() {
@@ -61,9 +63,9 @@ export default class GhostBlasters {
     shoot(e) {
         if (this.running) {
 
-            if (this.bullets.length > 15) {
-                this.bullets.shift();
-            }
+            // if (this.bullets.length > 15) {
+            //     this.bullets.shift();
+            // }
             
             const bullet = new Bullet();
             this.bullets.push(bullet);
@@ -76,8 +78,10 @@ export default class GhostBlasters {
     }
 
     ghostInterval() {
+        if (this.running) {
 
-        setInterval(this.addGhost.bind(this), 1000)
+            setInterval(this.addGhost.bind(this), this.interval)
+        }
 
 
     }
@@ -107,7 +111,7 @@ export default class GhostBlasters {
         this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height);
         this.level.animate(this.ctx);
         this.shooter.animate(this.ctx);
-        // this.ghost.animate(this.ctx);
+;
         
         
         if (!this.running) {
@@ -228,9 +232,16 @@ export default class GhostBlasters {
     gameOver() {
         this.ghosts.forEach(ghost => {
             if (ghost.x + 63 <= 0) {
-                alert(`game over, score: ${this.score}` );
-                this.restart();
+                this.gameEnd = true;
             }
         })
+
+        if (this.gameEnd) {
+
+            this.ghosts = [];
+            this.score = 0;
+            this.restart();
+            alert(`game over, score: ${this.score}`);
+        }   
     }
 }
