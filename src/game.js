@@ -8,7 +8,7 @@ export default class GhostBlasters {
         this.ctx = canvas.getContext("2d");
         this.canvas = canvas;
         this.dimensions = { width: canvas.width, height: canvas.height };
-        this.interval = 2000;
+        this.interval = 2300;
         this.bullets = [];
         this.ghosts = [];
         this.count = 1;
@@ -33,19 +33,20 @@ export default class GhostBlasters {
         this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height);
         this.running = false;
         this.gameEnd = false;
-        this.ghosts = [];
+        this.interval = 2300;
         this.level = new Level(this.dimensions);
         this.shooter = new Shooter (this.dimensions);
         this.bullet = new Bullet(this.dimensions);
         this.score = 0;
-
- 
+        
+        
         this.animate(); 
-  
+        
     }
-
+    
     play() {
-       this.running = true;
+        this.running = true;
+        this.ghosts = [];
        this.animate(); 
        this.ghostInterval();
     }
@@ -80,10 +81,18 @@ export default class GhostBlasters {
     ghostInterval() {
         if (this.running) {
 
-            setInterval(this.addGhost.bind(this), this.interval)
+           setInterval(this.addGhost.bind(this), this.interval)
+
         }
+    }
 
-
+    increaseInterval() {
+        if ((this.score / 2) % 5 === 0 && this.interval > 500 && this.score !== 0) {
+               this.interval -= 400
+               console.log("interval", this.interval)
+        }
+           
+ 
     }
 
 
@@ -129,6 +138,7 @@ export default class GhostBlasters {
             requestAnimationFrame(this.animate.bind(this));
             this.drawSparkles(this.ctx);
             this.gameOver();
+            this.increaseInterval();
             
         }
     }
