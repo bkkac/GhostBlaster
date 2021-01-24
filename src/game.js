@@ -63,9 +63,9 @@ export default class GhostBlasters {
     shoot(e) {
         if (this.running) {
 
-            // if (this.bullets.length > 15) {
-            //     this.bullets.shift();
-            // }
+            if (this.bullets.length > 15) {
+                this.bullets.shift();
+            }
             
             const bullet = new Bullet();
             this.bullets.push(bullet);
@@ -226,7 +226,7 @@ export default class GhostBlasters {
     drawScore() {
         this.ctx.font = "30pt Creepster";
         this.ctx.fillStyle = "#b30000";
-        this.ctx.fillText(this.score, 10, 790);
+        this.ctx.fillText((this.score / 2), 10, 790);
     }
 
     gameOver() {
@@ -238,10 +238,10 @@ export default class GhostBlasters {
 
         if (this.gameEnd) {
 
-            this.ghosts = [];
-            this.score = 0;
+            // this.ghosts = [];
+            // this.score = 0;
+            alert(`game over, score: ${this.score / 2}`);
             this.restart();
-            alert(`game over, score: ${this.score}`);
         }   
     }
 }
