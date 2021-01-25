@@ -8,7 +8,7 @@ export default class GhostBlasters {
         this.ctx = canvas.getContext("2d");
         this.canvas = canvas;
         this.dimensions = { width: canvas.width, height: canvas.height };
-        this.interval = 2300;
+        this.interval = 2000;
         this.bullets = [];
         this.ghosts = [];
         this.count = 1;
@@ -33,7 +33,8 @@ export default class GhostBlasters {
         this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height);
         this.running = false;
         this.gameEnd = false;
-        this.interval = 2300;
+        this.ghosts = [];
+        this.interval = 2000;
         this.level = new Level(this.dimensions);
         this.shooter = new Shooter (this.dimensions);
         this.bullet = new Bullet(this.dimensions);
@@ -49,6 +50,7 @@ export default class GhostBlasters {
         this.ghosts = [];
        this.animate(); 
        this.ghostInterval();
+       this.increaseSpeed();
     }
 
     click(e) {
@@ -80,18 +82,25 @@ export default class GhostBlasters {
 
     ghostInterval() {
         if (this.running) {
-
-           setInterval(this.addGhost.bind(this), this.interval)
-
+          setInterval(this.addGhost.bind(this), this.interval)
+        //    return int;
         }
+        
     }
 
-    increaseInterval() {
-        if ((this.score / 2) % 5 === 0 && this.interval > 500 && this.score !== 0) {
-               this.interval -= 400
-               console.log("interval", this.interval)
-        }
-           
+
+
+    increaseSpeed() {
+    //    const int = this.ghostInterval();
+        
+        const speed = () => {this.ghosts.forEach(ghost => {
+            ghost.velocity += 10 
+            console.log("vel", ghost.velocity )
+        })}
+
+        // if ((this.score / 2) % 5 === 0 && this.score !== 0) {
+            setInterval(speed(), 7000)
+        // }
  
     }
 
@@ -101,7 +110,8 @@ export default class GhostBlasters {
 
         const ghost = new Ghost(this.dimensions) 
         this.ghosts.push(ghost);
-        ghost.animate(this.ctx);
+        // ghost.animate(this.ctx);
+        // console.log("interval", this.interval);
         
     }
 
@@ -138,7 +148,7 @@ export default class GhostBlasters {
             requestAnimationFrame(this.animate.bind(this));
             this.drawSparkles(this.ctx);
             this.gameOver();
-            this.increaseInterval();
+            // this.increaseInterval();
             
         }
     }
@@ -152,6 +162,9 @@ export default class GhostBlasters {
                 this.score += 1;
                 ghost.dead = true;
                 setTimeout(() => this.ghosts = this.ghosts.filter(ghost => !ghost.dead), 1000)
+                // if (this.interval > 300) {
+                //     this.interval -= 100
+                // }
             }
         })
     }
@@ -248,7 +261,7 @@ export default class GhostBlasters {
 
         if (this.gameEnd) {
 
-            // this.ghosts = [];
+            this.ghosts = [];
             // this.score = 0;
             alert(`game over, score: ${this.score / 2}`);
             this.restart();
