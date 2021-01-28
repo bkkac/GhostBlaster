@@ -3,7 +3,7 @@ export default class Level {
    constructor(dimensions) {
        this.dimensions = dimensions;
        this.house_x = 80;
-       this.house_y = 550;
+       this.house_y = 350;
        this.velocity = 5;
 
    } 

@@ -4,7 +4,7 @@ export default class Ghost {
     this.velocity = 4;
     this.dimensions = dimensions;
     this.dead = false;
-    this.y = Math.floor(Math.random() * 551) + 10;
+    this.y = Math.floor(Math.random() * 351) + 10;
     this.x = 1200;
   }
 
