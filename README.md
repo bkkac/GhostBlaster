@@ -13,7 +13,7 @@ Ghost Blaster was made using:
 
 Upon visiting the game site, a player sees the shooter in his starting position, and instructions on how to play the game. 
 
-![alt text](images/game.png)
+![alt text](images/ghostblaster_splash.png)
 
 When the player presses any button, the game starts and ghosts begin generating on the screen.
 
